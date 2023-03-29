@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: b06f0e6c1dfa4356ac918da1bb32c603
+=======
+<<<<<<< HEAD
+guid: afaa9d57f4bfc2d419580917cb7ef025
+=======
+guid: b06f0e6c1dfa4356ac918da1bb32c603
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1435130987
 licenseType: Store
 NativeFormatImporter:

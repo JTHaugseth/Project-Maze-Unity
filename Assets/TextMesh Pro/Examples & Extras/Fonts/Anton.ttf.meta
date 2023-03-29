@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 997a43b767814dd0a7642ec9b78cba41
+=======
+<<<<<<< HEAD
+guid: be076a96e4262e442b6bb4e920fda8fe
+=======
+guid: 997a43b767814dd0a7642ec9b78cba41
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1484172033
 licenseType: Pro
 TrueTypeFontImporter:

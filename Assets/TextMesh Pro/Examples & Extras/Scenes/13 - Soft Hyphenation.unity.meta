@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 875684baf40f4d008ce806d03e2a81b2
+=======
+<<<<<<< HEAD
+guid: 6e0fe2b8cc608464ebdd6dc2e1dd5689
+=======
+guid: 875684baf40f4d008ce806d03e2a81b2
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1487545080
 licenseType: Pro
 DefaultImporter:

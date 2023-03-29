@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: db1090641b3241f6995b587eb21637bc
+=======
+<<<<<<< HEAD
+guid: f98fb714a412c53478405fc29a11fc52
+=======
+guid: db1090641b3241f6995b587eb21637bc
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 folderAsset: yes
 timeCreated: 1436068007
 licenseType: Pro

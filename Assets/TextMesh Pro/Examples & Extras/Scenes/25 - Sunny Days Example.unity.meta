@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: f9b4c22e15cff344ba9fc6542a58dd07
+=======
+<<<<<<< HEAD
+guid: af4cf8628aacc544eabd1ad59256e2e9
+=======
+guid: f9b4c22e15cff344ba9fc6542a58dd07
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1472854817
 licenseType: Free
 DefaultImporter:

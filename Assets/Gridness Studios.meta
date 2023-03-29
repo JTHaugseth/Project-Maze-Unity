@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Gridness Studios.meta
 guid: 44207653c373b0e4ea48d61a6816100e
+========
+guid: c28e71141812fbd45acd49cb0ec94003
+>>>>>>>> Stashed changes:Assets/Material/Gridness Studios.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

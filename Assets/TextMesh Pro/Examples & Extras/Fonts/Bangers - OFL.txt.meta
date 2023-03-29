@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: efe0bf4ac872451e91612d1ae593f480
+=======
+<<<<<<< HEAD
+guid: 394b8f5bd1b7994468f6eec9b04ba94c
+=======
+guid: efe0bf4ac872451e91612d1ae593f480
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1484171296
 licenseType: Pro
 TextScriptImporter:

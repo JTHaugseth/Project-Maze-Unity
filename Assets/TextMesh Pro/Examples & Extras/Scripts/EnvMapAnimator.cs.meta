@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: a4b6f99e8bc54541bbd149b014ff441c
+=======
+<<<<<<< HEAD
+guid: 77a480d9e95e4ce4dbb1a61fb29836ad
+=======
+guid: a4b6f99e8bc54541bbd149b014ff441c
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1449025325
 licenseType: Pro
 MonoImporter:

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 2b5e9ae96c5644d8bae932f8b4ca68a2
+=======
+<<<<<<< HEAD
+guid: 3c5c04a773d46fe4d90b367fdae4de6f
+=======
+guid: 2b5e9ae96c5644d8bae932f8b4ca68a2
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 timeCreated: 1464390481
 licenseType: Pro
 TextureImporter:

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 50f52f9274434ecfb34dd87f0836f323
+=======
+<<<<<<< HEAD
+guid: 81ec67bedfc7a92468e105d1fc75cc37
+=======
+guid: 50f52f9274434ecfb34dd87f0836f323
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 labels:
 - Mesh
 - Text

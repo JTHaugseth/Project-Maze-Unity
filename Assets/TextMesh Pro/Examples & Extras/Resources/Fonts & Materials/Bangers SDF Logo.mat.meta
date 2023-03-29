@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: f4e195ac1e204eff960149d1cb34e18c
+=======
+<<<<<<< HEAD
+guid: 9190b7dcdec080e49939ec9e13999043
+=======
+guid: f4e195ac1e204eff960149d1cb34e18c
+>>>>>>> 63784ee99f4f37f78bb7f4a34c66ae3021bd2847
+>>>>>>> Stashed changes
 NativeFormatImporter:
   userData: 
   assetBundleName: 
