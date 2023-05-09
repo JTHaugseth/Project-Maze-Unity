@@ -24,7 +24,7 @@ public class SwitchPartsCollector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
-        // Activate the switch parts when you have enter the midle
+        // Activate the switch parts when you have entered the middle
         if ((whatIsPlayer.value & (1 << other.gameObject.layer)) > 0 && !gameStarted)
         {
             collectedPartsText.gameObject.SetActive(true);
@@ -38,10 +38,11 @@ public class SwitchPartsCollector : MonoBehaviour
 
     public void CollectSwitchPart()
     {
+        //Collect switch part
         collectedSwitchParts++;
         UpdateCollectedPartsText();
     }
-    //parts collected
+        //Parts collected will update
     private void UpdateCollectedPartsText()
     {
         collectedPartsText.text = $"You have collected {collectedSwitchParts}/{totalSwitchParts} switch-parts";

@@ -2,12 +2,14 @@ using UnityEngine;
 using TMPro;
 
 public class ActivateCrawler : MonoBehaviour
-{
+{   
+    // Component-references
     public GameObject enemy; // Assign the enemy GameObject in the Inspector
     public LayerMask WhatIsPlayer; // Configure the LayerMask in the Inspector
     private Collider myCollider;
     public TextMeshProUGUI hidePromt;
 
+    // Sets myCollider as the object's collider.
     private void Start()
     {
         myCollider = GetComponent<Collider>();
@@ -15,12 +17,12 @@ public class ActivateCrawler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to the player using the LayerMask
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         if (((1 << other.gameObject.layer) & WhatIsPlayer) != 0)
         {
             enemy.SetActive(true);
             hidePromt.gameObject.SetActive(true);
-            myCollider.enabled = false; // Disable the collider
+            myCollider.enabled = false;
         }
     }
 }

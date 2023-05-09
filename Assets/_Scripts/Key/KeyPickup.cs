@@ -14,7 +14,7 @@ public class KeyPickup : MonoBehaviour
     public Image keyUIImage;
 
     public AudioClip pickupSound;
-    public GameObject audioPlayerPrefab; // Add this line to declare an AudioPlayer prefab
+    public GameObject audioPlayerPrefab; 
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class KeyPickup : MonoBehaviour
         interactText.gameObject.SetActive(false);
     }
 
+    //When an object enters the collider the keyoutline script will run it ShowOutline method. 
     void OnTriggerEnter(Collider other)
     {
         if (IsPlayerLayer(other.gameObject))
@@ -32,6 +33,7 @@ public class KeyPickup : MonoBehaviour
         }
     }
 
+    // Does the opposite of the OnTriggerEnter.
     void OnTriggerExit(Collider other)
     {
         if (IsPlayerLayer(other.gameObject))
@@ -42,6 +44,7 @@ public class KeyPickup : MonoBehaviour
         }
     }
 
+    // Checks if the player has clicked the interactkey (E) when within the collider. 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(interactKey))
@@ -50,35 +53,31 @@ public class KeyPickup : MonoBehaviour
         }
     }
 
+    // disables the interact-text, enables key-image, plays pickup sound and destroys the key.
     void PickUpKey()
     {
-        // Add the key to the player's inventory.
-        // Deactivate the interactText
         interactText.gameObject.SetActive(false);
-        // Show the key UIImage
         keyUIImage.gameObject.SetActive(true);
-        // Play the pickup sound
         PlaySound(pickupSound);
-        // Destroy this key object
         Destroy(gameObject);
     }
 
+    // Creates an instance of an empty object with a audiosource. (This is a prefab). 
+    // Destroys the empty game object after the clip has stopped playing. 
+    // This is done because the key is gone, and we wanted the sound to still play if the key was gone. 
     void PlaySound(AudioClip clip)
     {
-        // Instantiate the AudioPlayer prefab
         GameObject audioPlayer = Instantiate(audioPlayerPrefab);
-        // Get the AudioSource component from the AudioPlayer
         AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
-        // Assign the sound clip to the AudioSource
         audioSource.clip = clip;
-        // Play the sound
         audioSource.Play();
-        // Destroy the AudioPlayer object after the sound has finished playing
         Destroy(audioPlayer, clip.length);
     }
 
+    // 
     bool IsPlayerLayer(GameObject obj)
     {
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         return whatIsPlayer == (whatIsPlayer | (1 << obj.layer));
     }
 }

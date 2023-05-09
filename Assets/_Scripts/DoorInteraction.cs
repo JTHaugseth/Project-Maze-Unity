@@ -29,8 +29,12 @@ public class DoorInteraction : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) 
     {
+        // When the player enters the zone of the door collider.
+        // The function OnTriggerEnter is called.
+        // If conditions for interaction between object and player is there,
+        // Assigned message Press E will be displayed since playerInRange is True.
         if (!interactionDisabled && IsPlayerLayer(other.gameObject))
         {
             playerInRange = true;
@@ -41,6 +45,8 @@ public class DoorInteraction : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        // Like the comment above, this ones the same just the other way around
+        // Changes playerInRange to False so the message disappear.
         if (!interactionDisabled && IsPlayerLayer(other.gameObject))
         {
             playerInRange = false;
@@ -50,6 +56,8 @@ public class DoorInteraction : MonoBehaviour
 
     void Update()
     {
+        // Once per frame this checks if the player is in range and pressed E interaction.
+        // When it`s been opened, OpenDoor function is called.
         if (playerInRange && Input.GetKeyDown(interactKey) && !interactionDisabled)
         {
             TryOpenDoor();
@@ -68,7 +76,6 @@ public class DoorInteraction : MonoBehaviour
             // Set the keyUIImage to false to show the key is used.
             keyPickupScript.keyUIImage.gameObject.SetActive(false);
 
-            // Play soundClip1
             audioSource.clip = soundClip1;
             audioSource.Play();
 
@@ -113,6 +120,7 @@ public class DoorInteraction : MonoBehaviour
 
     bool IsPlayerLayer(GameObject obj)
     {
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         return whatIsPlayer == (whatIsPlayer | (1 << obj.layer));
     }
 }

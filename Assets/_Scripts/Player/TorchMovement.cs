@@ -7,27 +7,24 @@ public class TorchMovement : MonoBehaviour
     public Transform playerTransform;
     public PlayerMovement playerMovement;
 
+    // Torch movement settings
     public float walkBobbingSpeed = 0.18f;
     public float sprintBobbingSpeed = 0.35f;
     public float verticalBobbingAmount = 0.1f;
     public float horizontalBobbingAmount = 0.05f;
 
+    // Stores the initial position, and sets timer.
     private Vector3 initialPosition;
     private float timer = 0;
 
     void Start()
     {
-        if (playerTransform == null)
-        {
-            Debug.LogError("Player Transform is not assigned to TorchMovement script.");
-            return;
-        }
-
         initialPosition = transform.localPosition;
     }
 
     void FixedUpdate()
     {
+        // Activates the movement effect (bobbing) if the player is walking or sprinting. 
         if (playerMovement.state == PlayerMovement.MovementState.walking || playerMovement.state == PlayerMovement.MovementState.sprinting)
         {
             float bobbingSpeed = (playerMovement.state == PlayerMovement.MovementState.walking) ? walkBobbingSpeed : sprintBobbingSpeed;
@@ -35,6 +32,7 @@ public class TorchMovement : MonoBehaviour
         }
         else
         {
+            // If not its position and timer is reset
             timer = 0;
             transform.localPosition = initialPosition;
         }
@@ -42,17 +40,20 @@ public class TorchMovement : MonoBehaviour
 
     private void BobbingEffect(float speed)
     {
+        // Creates waveslices and get input from the player
         float waveSliceY = 0.0f;
         float waveSliceX = 0.0f;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        // Resets timer of there is no input from player
         if (Mathf.Abs(horizontal) == 0 && Mathf.Abs(vertical) == 0)
         {
             timer = 0.0f;
         }
         else
         {
+            // Calculates waveslices and update the timer. If timer goes over 2PI it will reset back to the given range (0, 2PI). 
             waveSliceY = Mathf.Sin(timer);
             waveSliceX = Mathf.Cos(timer);
             timer = timer + speed;
@@ -62,6 +63,7 @@ public class TorchMovement : MonoBehaviour
             }
         }
 
+        // Applying the bobbing effect based on the waveslices. 
         if (waveSliceY != 0 || waveSliceX != 0)
         {
             float translateY = waveSliceY * verticalBobbingAmount;
@@ -74,6 +76,7 @@ public class TorchMovement : MonoBehaviour
         }
         else
         {
+            // If the player isnt moving, reset the torch to its original position. 
             transform.localPosition = initialPosition;
         }
     }

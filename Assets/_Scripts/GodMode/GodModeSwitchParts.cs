@@ -12,7 +12,7 @@ public class GodModeSwitchParts : MonoBehaviour
     public TextMeshProUGUI switchPartCollector;
 
     private bool spawnMode = false;
-     // The distance in front of the player where the parts will spawn
+     // Distance the switchparts will spawn infront of the player
     public float distance = 2f;  
     // The spacing between the parts
     public float spacing = 1f;  
@@ -38,7 +38,7 @@ public class GodModeSwitchParts : MonoBehaviour
 
     void SpawnParts()
     {
-        // make the parts activ
+        // make the parts active
         switchPartCollector.gameObject.SetActive(true);
         part1.SetActive(true);
         part2.SetActive(true);

@@ -16,6 +16,8 @@ public class PromptController : MonoBehaviour
         textMeshPro = GetComponent<TextMeshProUGUI>();
     }
 
+    // When the text is enabled it checks and stops the fadeCourutione if its already playing, if not it sets fadecoroutine to the new 
+    // StartCoroutine with the FadeInAndOut() method. 
     private void OnEnable()
     {
         if (fadeCoroutine != null)
@@ -28,11 +30,12 @@ public class PromptController : MonoBehaviour
 
     private IEnumerator FadeInAndOut()
     {
-        // Fade in
+        // The coroutine starts with a startColor and a endColor 
         float currentTime = 0f;
         Color startColor = new Color(textMeshPro.color.r, textMeshPro.color.g, textMeshPro.color.b, 0f);
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 1f);
 
+        // Through a while loop with current time and fadeInDuration the text fades from StartColor to endColor. 
         while (currentTime < fadeInDuration)
         {
             currentTime += Time.deltaTime;
@@ -40,10 +43,10 @@ public class PromptController : MonoBehaviour
             yield return null;
         }
 
-        // Display for the specified duration
+        // The coroutine waits for the fade in duration and display duration to complete. Then start it's fade out ending. 
         yield return new WaitForSeconds(displayDuration);
 
-        // Fade out
+        // This is the exact opposite of the first while loop. The text will fade out. 
         currentTime = 0f;
         startColor = textMeshPro.color;
         endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);

@@ -21,14 +21,16 @@ public class DoorCloseOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Checks if the gameobject has the same tag as the player. Player is set as "Player" in tags. 
         if (other.gameObject.CompareTag("Player") && !isOpen)
         {
             isOpen = true;
             StartCoroutine(RotateDoor(openAngle));
-            doorCollider.enabled = false; // Disable the collider
+            doorCollider.enabled = false; 
         }
     }
 
+    // Rotates the door from start to end position with given angle. 
     private IEnumerator RotateDoor(float angle)
     {
         float time = 0.0f;
@@ -48,7 +50,7 @@ public class DoorCloseOnTrigger : MonoBehaviour
             yield return null;
         }
 
-        // Set the flag to indicate that the door is closed
+        
         isOpen = false;
     }
 }

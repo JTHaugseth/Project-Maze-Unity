@@ -59,7 +59,7 @@ public class SwitchController : MonoBehaviour
 
     private void Update()
     {
-        //checking if player is in range, has switch and door and hatch is in nutral posisons
+        //Checking if player is in range, has switch and door and hatch is in initial position position
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E) && !hasSwitched)
         {
             initialRotation = lever.transform.rotation;

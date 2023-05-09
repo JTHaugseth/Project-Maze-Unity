@@ -8,6 +8,8 @@ public class EntryMazeDoor : MonoBehaviour
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
+    // This script only controls the rotation speed and angle of the entry-maze door. The function Open() is called upon in
+    // the BookInteraction.cs script. 
     void Start()
     {
         closedRotation = transform.rotation;

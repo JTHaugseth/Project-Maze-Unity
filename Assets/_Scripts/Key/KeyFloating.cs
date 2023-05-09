@@ -14,6 +14,7 @@ public class KeyFloating : MonoBehaviour
         startPos = transform.position;
     }
 
+    // Moves the key up and down on the Y transform scale.
     void Update()
     {
         float newY = Mathf.Sin(Time.time * bobSpeed) * bobHeight;

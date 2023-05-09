@@ -14,7 +14,7 @@ public class GodModeGuideLine : MonoBehaviour
 
     void Start()
     {
-        // draw a path on the screen
+        // Creates a new nav mesh path
         path = new NavMeshPath();
         lineRenderer = GetComponent<LineRenderer>();
         // Set up the LineRenderer
@@ -32,7 +32,7 @@ public class GodModeGuideLine : MonoBehaviour
         {
             guideMode = !guideMode;  
         }
-        // calculates best way to the middel of the maze
+        // calculates best way to the middle of the maze
         if (guideMode)
         {
             NavMesh.CalculatePath(player.transform.position, target.position, NavMesh.AllAreas, path);

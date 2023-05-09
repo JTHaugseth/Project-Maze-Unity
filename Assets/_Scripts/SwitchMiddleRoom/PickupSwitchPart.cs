@@ -15,7 +15,7 @@ public class PickupSwitchPart : MonoBehaviour
     private AudioSource audioSource;
 
     void Start()
-    {   //find audio sound sett monsten to not activ
+    {  
         monsterSpawn.SetActive(false);
         audioSource = pickUpPartSound.GetComponent<AudioSource>();
     }
@@ -23,7 +23,7 @@ public class PickupSwitchPart : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
-        //show text when player is in range of key
+        // Show text when player is in range of part
         if ((whatIsPlayer.value & (1 << other.gameObject.layer)) > 0)
         {
             playerInRange = true;
@@ -35,7 +35,7 @@ public class PickupSwitchPart : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            //get part,play sound and activat monster
+            //get part,play sound and activate monster
             switchPartsCollector.CollectSwitchPart();
             pickupText.gameObject.SetActive(false);
             monsterSpawn.SetActive(true);
@@ -51,7 +51,7 @@ public class PickupSwitchPart : MonoBehaviour
         if ((whatIsPlayer.value & (1 << other.gameObject.layer)) > 0)
         {
 
-            //remove text when player moves out of range
+            //remove text when player moves out of range of part
             playerInRange = false;
             pickupText.gameObject.SetActive(false);
         }

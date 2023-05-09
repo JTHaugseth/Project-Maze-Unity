@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class DeactivateCrawlers : MonoBehaviour
 {
-    public GameObject[] enemies; // Assign the enemy GameObjects in the Inspector
-    public LayerMask WhatIsPlayer; // Configure the LayerMask in the Inspector
+    // Creates an object-arraylist of enemies. 
+    public GameObject[] enemies; 
+    public LayerMask WhatIsPlayer; 
 
+    // Checks when player walks into a collider.
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to the player using the LayerMask
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         if (((1 << other.gameObject.layer) & WhatIsPlayer) != 0)
-        {
+        {   
+            // Loops through the array and disables them.
             foreach (GameObject enemy in enemies)
             {
                 if (enemy != null)

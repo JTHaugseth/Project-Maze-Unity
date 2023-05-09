@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TorchFlicker : MonoBehaviour
 {
+    // Settings for the torch flicker
     public Light torchLight;
     public float minIntensity = 0.5f;
     public float maxIntensity = 2.0f;
@@ -14,16 +15,18 @@ public class TorchFlicker : MonoBehaviour
     private float t;
 
     void Start()
-    {
+    {   
         if (torchLight == null)
         {
             torchLight = GetComponent<Light>();
         }
+        // Start the flicker coroutine
         StartCoroutine(Flicker());
     }
 
     IEnumerator Flicker()
     {
+        // Continously change the intensity and range of the light to show the flickering effect.
         while (true)
         {
             t = Mathf.PingPong(Time.time * flickerSpeed, 1.0f);

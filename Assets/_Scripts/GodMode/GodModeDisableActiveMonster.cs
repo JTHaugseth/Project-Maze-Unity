@@ -13,7 +13,7 @@ public class GodModeDisableActiveMonster : MonoBehaviour
 
     void Update()
     {
-        //deactivat monster
+        //Deactivate monsters
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             phase1Enemy.SetActive(false);
