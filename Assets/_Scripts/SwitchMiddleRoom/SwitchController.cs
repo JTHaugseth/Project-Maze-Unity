@@ -39,6 +39,7 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+         // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         if (((1 << other.gameObject.layer) & WhatIsPlayer) != 0 && !hasSwitched)
         {
             isPlayerInRange = true;
@@ -48,6 +49,7 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
         if (((1 << other.gameObject.layer) & WhatIsPlayer) != 0)
         {
             isPlayerInRange = false;
@@ -57,6 +59,7 @@ public class SwitchController : MonoBehaviour
 
     private void Update()
     {
+        //checking if player is in range, has switch and door and hatch is in nutral posisons
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E) && !hasSwitched)
         {
             initialRotation = lever.transform.rotation;
@@ -74,6 +77,7 @@ public class SwitchController : MonoBehaviour
             rotationStartTime = Time.time;
             hasSwitched = true;
 
+            //play audio clip
             hatchAudio.Play();
             door1Audio.Play();
             door2Audio.Play();
@@ -83,11 +87,12 @@ public class SwitchController : MonoBehaviour
 
         if (hasSwitched && Time.time <= rotationStartTime + rotationDuration)
         {
+            //open hatch
             float t = (Time.time - rotationStartTime) / rotationDuration;
             lever.transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, t);
             hatch.transform.rotation = Quaternion.Lerp(hatchInitialRotation, hatchTargetRotation, t);
             
-
+            // close door1 and door 2
             float tt = (Time.time - rotationStartTime) / rotationDuration;
             door1.transform.localPosition = Vector3.Lerp(door1InitialPosition, door1TargetPosition, tt);
             door2.transform.localPosition = Vector3.Lerp(door2InitialPosition, door2TargetPosition, tt);

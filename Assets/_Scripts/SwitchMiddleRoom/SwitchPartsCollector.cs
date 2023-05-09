@@ -5,16 +5,17 @@ public class SwitchPartsCollector : MonoBehaviour
 {
     public LayerMask whatIsPlayer;
     public TextMeshProUGUI collectedPartsText;
-    public GameObject[] switchParts; // Add this field to store the switch parts
+    public GameObject[] switchParts; 
     private int totalSwitchParts = 3;
     private int collectedSwitchParts = 0;
-    private bool gameStarted = false; // Add this field to track if the game has started
+    private bool gameStarted = false; 
 
     private void Start()
     {
+        // Hide the switch parts at the start of the game
         UpdateCollectedPartsText();
         collectedPartsText.gameObject.SetActive(false);
-        foreach (GameObject part in switchParts) // Hide the switch parts at the start of the game
+        foreach (GameObject part in switchParts) 
         {
             part.SetActive(false);
         }
@@ -22,11 +23,13 @@ public class SwitchPartsCollector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
+        // Activate the switch parts when you have enter the midle
         if ((whatIsPlayer.value & (1 << other.gameObject.layer)) > 0 && !gameStarted)
         {
             collectedPartsText.gameObject.SetActive(true);
             gameStarted = true;
-            foreach (GameObject part in switchParts) // Activate the switch parts when the game starts
+            foreach (GameObject part in switchParts) 
             {
                 part.SetActive(true);
             }
@@ -38,7 +41,7 @@ public class SwitchPartsCollector : MonoBehaviour
         collectedSwitchParts++;
         UpdateCollectedPartsText();
     }
-
+    //parts collected
     private void UpdateCollectedPartsText()
     {
         collectedPartsText.text = $"You have collected {collectedSwitchParts}/{totalSwitchParts} switch-parts";

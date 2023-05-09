@@ -9,10 +9,11 @@ public class GodModeDisableActiveMonster : MonoBehaviour
     public GameObject crawlerSecondary1;
     public GameObject crawlerSecondary2;
     public GameObject crawlerSecondary3;
-    public GameObject phase4Enemy;  // Reference to your monster
+    public GameObject phase4Enemy;  
 
     void Update()
     {
+        //deactivat monster
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             phase1Enemy.SetActive(false);
