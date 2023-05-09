@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitDoor : MonoBehaviour
 {
+    //Variables
     public string interactKey = "e";
     public LayerMask whatIsPlayer;
     public TextMeshProUGUI interactText;
@@ -26,6 +27,7 @@ public class ExitDoor : MonoBehaviour
         interactText.gameObject.SetActive(false);
     }
 
+    //when the player enters the collider a interact text shows
     void OnTriggerEnter(Collider other)
     {
         if (!interactionDisabled && IsPlayerLayer(other.gameObject))
@@ -36,6 +38,7 @@ public class ExitDoor : MonoBehaviour
         }
     }
 
+    //when the player leaves the collider the interact text is disabled
     void OnTriggerExit(Collider other)
     {
         if (!interactionDisabled && IsPlayerLayer(other.gameObject))
@@ -45,6 +48,8 @@ public class ExitDoor : MonoBehaviour
         }
     }
 
+    //update checks if the player is inrange and is pressing the interactbutton and that the interaction isnt disabled
+    //if it returns true TryOpenDoor is called
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(interactKey) && !interactionDisabled)
@@ -56,11 +61,13 @@ public class ExitDoor : MonoBehaviour
 
     public void TryOpenDoor()
     {
+        //checks if the player has the key and disables the monster, starts the doorsound,
+        //disables the interaction and the corutine starts. If they dont a text tells the player they dont have the key. 
         if (keyPickupScript.keyUIImage.gameObject.activeInHierarchy)
         {
             interactText.gameObject.SetActive(false);
             interactionDisabled = true;
-            Debug.Log("player has won the game!!!Horry shit");
+            Debug.Log("player has won the game!");
             audioSource.Play();
             P4Enemy.SetActive(false);
         
@@ -78,6 +85,8 @@ public class ExitDoor : MonoBehaviour
         return whatIsPlayer == (whatIsPlayer | (1 << obj.layer));
     }
 
+
+    //Fades the screen to black and when its done it waits for 1f and sends the player to the main menu
     IEnumerator FadeOutCoroutine()
     {
         float startTime = Time.time;

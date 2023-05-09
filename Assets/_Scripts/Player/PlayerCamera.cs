@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+    //Variables
+
     // Mouse sensitivity
     public float sensX;
     public float sensY;
@@ -17,7 +19,7 @@ public class PlayerCamera : MonoBehaviour
 
     private bool canProcessInput = false;
 
-    // Start is called before the first frame update
+    //Locks the cursor and makes it invisible
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -29,6 +31,7 @@ public class PlayerCamera : MonoBehaviour
         StartCoroutine(EnableInputProcessing());
     }
 
+    // Coroutine to enable input processing after a delay
     IEnumerator EnableInputProcessing()
     {
         yield return new WaitForSeconds(0.5f);
@@ -54,6 +57,7 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    // Method to wrap angles around 360 degrees
     float WrapAngle(float angle) {
         angle %= 360;
         if (angle > 180)

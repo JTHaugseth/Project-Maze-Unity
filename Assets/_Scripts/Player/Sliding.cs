@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sliding : MonoBehaviour
 {
+    //Variables
     [Header("References")]
     public Transform orientation;
     public Transform playerObj;
@@ -24,6 +25,8 @@ public class Sliding : MonoBehaviour
     private float verticalInput;
     private bool sliding;
 
+
+    //asigns variables to the rigidbody and playermovement
     private void Start(){
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
@@ -31,6 +34,7 @@ public class Sliding : MonoBehaviour
         startYscale = playerObj.localScale.y;
     }
 
+    //Checks if the player is pressing the slide key and  any movement key (wasd)
     private void Update(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -43,12 +47,14 @@ public class Sliding : MonoBehaviour
         }
     }
 
+    //updates the physics based movement
     private void FixedUpdate(){
         if(sliding){
             SlidingMovement();
         }
     }
 
+    // changes the player height to slideYscale and adds downward force. Also sets the slideTimer.
     private void StartSlide(){
         sliding = true;
 
@@ -58,6 +64,7 @@ public class Sliding : MonoBehaviour
         slideTimer = maxSlideTime;
     }
 
+    //Adds movement to the player depending on the players input. When the slidetimer reaches 0 it calls stopSlide
     private void SlidingMovement(){
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         
@@ -69,6 +76,7 @@ public class Sliding : MonoBehaviour
         }
     }
 
+    //Sets sliding to fals and sets player height back to normal
     private void StopSlide(){
         sliding = false;
 

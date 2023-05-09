@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isGameOver = false;
 
+    //sets the playerhealh to maxhealth
+    //disables gameoverscreen
     private void Start()
     {
         currentHealth = maxHealth;
@@ -25,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         restartButton.onClick.AddListener(Restart);
     }
 
+    //When the player takes dammage it removes it from the player health and stops time and enables the gameoverscreen.
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -32,22 +35,23 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0 && !isGameOver)
         {
             isGameOver = true;
-            Time.timeScale = 0f; // Pause the game
+            Time.timeScale = 0f; 
             gameOverScreen.SetActive(true);
             StartCoroutine(FadeToBlack());
         }
     }
 
+    //when the player dies the screen turns red and then fades to black. In the end it shows the gameover text and restart button.
     private IEnumerator FadeToBlack()
     {
         Color startColor = screenOverlay.color;
         Color endColor = Color.black;
-        float duration = 1f; // adjust as needed
+        float duration = 1f; 
 
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.unscaledDeltaTime; // Use unscaledDeltaTime to keep time consistent
+            elapsedTime += Time.unscaledDeltaTime; 
             screenOverlay.color = Color.Lerp(startColor, endColor, elapsedTime / duration);
             yield return null;
         }
@@ -59,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
         Cursor.visible = true;
     }
 
+    //When the player presses the restart button time starts again and the scene is reloaded.
     private void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

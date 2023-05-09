@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Variables
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    //the player wil always have one movementstate asigned depending on their input
     public MovementState state;
 
     public enum MovementState{
@@ -63,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
-    // Start is called before the first frame update
+    //Gets the rigid body component and freezes the rotation
+    //sets playerheight and the player can jump
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -73,16 +76,17 @@ public class PlayerMovement : MonoBehaviour
         startYscale = transform.localScale.y;
     }
 
-    // Update is called once per frame
+    
     private void Update() {
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
 
         MyInput();
         SpeedControl();
         StateHandler();
 
-        // Handle drag
+        // Handle drag when grounded
         if(grounded) {
             rb.drag = groundDrag;
         } else {
@@ -90,15 +94,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Called moveplayer at fixed intervals to that the framerate doesnt dictate movement
     private void FixedUpdate() {
         MovePlayer();
     }
 
+    // Gets playerInput and checks if the player can jump
+    //also checks if the player is crouching and sets player height
     private void MyInput() {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // When to jump
+    
         if(Input.GetKey(jumpKey) && readyToJump && grounded && playerHealth.currentHealth>0) {
             readyToJump = false;
             Jump();
@@ -118,7 +125,10 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-   private void StateHandler() {
+    //Checks if the player is grounded and player input to 
+    // determine the player state
+    private void StateHandler() {
+
     bool moving = horizontalInput != 0 || verticalInput != 0;
     bool wasSprinting = state == MovementState.sprinting;
 
@@ -163,9 +173,10 @@ public class PlayerMovement : MonoBehaviour
         audioSource.Stop();
     }
 }
-
+    
     private void MovePlayer() {
 
+        //If the player is on a slope it mimmics gravity
         if(Onslope() && !exitingSlope){
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
             rb.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -185,12 +196,15 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
+        //if the player is not on a slope it enables gravity again
         rb.useGravity = !Onslope();
         
     }
 
+    //controls the player speed.
     private void SpeedControl() {
 
+        //Sets the speed if player is on a slope
         if(Onslope() && !exitingSlope){
             if(rb.velocity.magnitude > moveSpeed){
                 rb.velocity = rb.velocity.normalized * moveSpeed;
@@ -208,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    //adds upwars force when Jump is called
     private void Jump() {
 
         exitingSlope = true;
@@ -217,12 +232,14 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
+    // When resetJump is called it lets the player jump and the player is no longer exitingSlope
     private void ResetJump() {
         readyToJump = true;
 
         exitingSlope = false;
     }
 
+    //returns true if the player is standing on a slope with a certain angle
     private bool Onslope(){
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)){
            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
@@ -232,6 +249,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
+    //returns the slope direction by projecting the movement direction onto the slope normal and normalizing the result.
     private Vector3 GetSlopeMoveDirection(){
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }

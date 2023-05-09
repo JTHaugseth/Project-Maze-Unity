@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MainSound : MonoBehaviour
 {
+    //variables
     public GameObject soundPlayer;
     public GameObject monster;
     public GameObject phase4Monster;
     public AudioClip mainAmbience;
     public AudioClip chaseMusic;
     public AudioClip phase4Music;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
     AudioSource audioSource = soundPlayer.GetComponent<AudioSource>();
@@ -19,9 +21,9 @@ public class MainSound : MonoBehaviour
     audioSource.volume = 0.15f;
     }
 
-    // Update is called once per frame
     void Update()
 {
+    //checks if any monster is active or not and changes music
     AudioSource audioSource = soundPlayer.GetComponent<AudioSource>();
 
     if (monster.activeSelf && audioSource.clip != chaseMusic)
