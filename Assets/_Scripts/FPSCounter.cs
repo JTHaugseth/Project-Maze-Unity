@@ -8,6 +8,7 @@ public class FPSCounter : MonoBehaviour
     public TextMeshProUGUI fpsText;
     private float deltaTime;
 
+    //checks players Frames per seconds and sets it as a text
     void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;

@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class StartFade : MonoBehaviour
 {
-    public float delayTime = 2f; // Delay before the fade-in effect starts in seconds
-    public float fadeDuration = 1f; // Duration of the fade-in effect in seconds
-    public Image blackStarterScreen; // Reference to the black UI image
+    //Variables
+    public float delayTime = 2f; 
+    public float fadeDuration = 1f; 
+    public Image blackStarterScreen; 
 
     void Start()
     {
         StartCoroutine(FadeInCoroutine());
     }
-
+    
+    // The Corutine waits 2f before it fades the black screen
     IEnumerator FadeInCoroutine()
     {
-        yield return new WaitForSeconds(delayTime); // Wait for the delay time
+        yield return new WaitForSeconds(delayTime); 
 
         float startTime = Time.time;
         float alpha = 1f;
@@ -29,7 +31,7 @@ public class StartFade : MonoBehaviour
             yield return null;
         }
         
-        // Disable the panel or image once the fade-in effect is complete
+        // Disables the image once the fade-in effect is complete
         gameObject.SetActive(false);
     }
 }

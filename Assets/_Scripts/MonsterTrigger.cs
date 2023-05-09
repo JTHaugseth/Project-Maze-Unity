@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterTrigger : MonoBehaviour
 {
+    //Variables
     public GameObject monster;
     public float speed;
     public Vector3 startPosition;
@@ -16,13 +17,13 @@ public class MonsterTrigger : MonoBehaviour
     public GameObject phase4Monster;
     
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         triggerCollider = GetComponent<Collider>();
     }
 
-    // Update is called once per frame
+    // checks if the monster is moving and
     void Update()
     {
         if (isMoving && Vector3.Distance(monster.transform.position, endPosition) > 0.1f)
@@ -40,6 +41,7 @@ public class MonsterTrigger : MonoBehaviour
         }
     }
 
+    //If the player enters the colider and no other monster is active, the monster moves from start to end with sound
     private void OnTriggerEnter(Collider other)
     {
         if (!hasTriggered && other.CompareTag("Player") && !phase1Monster.activeSelf && !phase4Monster.activeSelf)
