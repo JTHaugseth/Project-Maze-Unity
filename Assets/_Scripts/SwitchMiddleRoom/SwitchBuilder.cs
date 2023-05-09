@@ -18,6 +18,8 @@ public class SwitchBuilder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // This if statement is using bitwise operators to check a gameobject's layer compared to the wanted layer (WhatIsPlayer)
+        //show text when entering the middel
         if ((whatIsPlayer.value & (1 << other.gameObject.layer)) > 0)
         {
             if (collectedPartsText.text == "You have collected 3/3 switch-parts")
@@ -42,6 +44,7 @@ public class SwitchBuilder : MonoBehaviour
 
     private void Update()
     {
+        //check if you can build the switch
         if (collectedPartsText.text == "You have collected 3/3 switch-parts" && Input.GetKeyDown(KeyCode.E) && switchOutline.activeSelf && !switchBuilt)
         {
             BuildSwitch();
@@ -54,7 +57,7 @@ public class SwitchBuilder : MonoBehaviour
             interactionText.gameObject.SetActive(false);
         }
     }
-
+    //build switch
     private void BuildSwitch()
     {
         switchOutline.SetActive(false);

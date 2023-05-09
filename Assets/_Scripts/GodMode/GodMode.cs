@@ -16,7 +16,7 @@ public class GodMode : MonoBehaviour
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
     }
-
+    //press key to enable godmode
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -25,11 +25,12 @@ public class GodMode : MonoBehaviour
             UpdateText();
         }
     }
-
+     
     private void UpdateText()
-    {
+    {   
         if (godModeEnabled)
         {
+            // change collor of text, show guildlines, increas healt.
             playerHealth.currentHealth = 10000;
             guideLine.gameObject.SetActive(true);
             switchParts.gameObject.SetActive(true);
@@ -39,6 +40,7 @@ public class GodMode : MonoBehaviour
         }
         else
         {
+            // change collor back,hide guildlines, reduce healt 
             playerHealth.currentHealth = 100;
             guideLine.gameObject.SetActive(false);
             switchParts.gameObject.SetActive(false);

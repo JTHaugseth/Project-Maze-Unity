@@ -16,7 +16,7 @@ public class pausegamemanager : MonoBehaviour
     public PlayerHealth playerHealth;
    
 
-    // finding all the buttons. ustop freeztime
+    // finding all the buttons. unstop freeztime
     void Start()
     {
         resumButton.onClick.AddListener(Play);
